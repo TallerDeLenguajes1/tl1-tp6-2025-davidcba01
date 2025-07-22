@@ -1,12 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
-
 int a;
 int b;
-
 a = 10;
 b = a;
-
 Console.WriteLine("valor de a: " + a);
 Console.WriteLine("valor de b: " + b);
 
@@ -18,7 +15,7 @@ Console.WriteLine("valor de b: " + b);
 // la línea que dice <Nullable>enable</Nullable>. No olvide guardar el archivo.
 
 int numero=0;
-Console.WriteLine("Ingrese un numero que quiera invertir (entero positivo):");
+Console.Write("Ingrese un numero que quiera invertir (entero positivo): ");
 string entrada = Console.ReadLine();
 bool esNumero = int.TryParse(entrada, out numero);
 
@@ -38,7 +35,7 @@ if (esNumero)
         }
 
         Console.WriteLine("El numero invertido es: " + numeroInvertido);
-    } 
+    }
     else
     {
         Console.WriteLine("La entrada no es un número entero válido");
@@ -47,4 +44,66 @@ if (esNumero)
 else
 {
     Console.WriteLine("La entrada no es un número entero válido");
+}
+
+// Ejercicio 2. Ingrese al branch CalculadoraV1 y construya un programa que sea una
+// calculadora que permita al usuario realizar las 4 operaciones básicas (Sumar, Restar,
+// Multiplicar y Dividir) a partir de un menú para seleccionar la opción a elegir y que
+// luego pida dos números y que devuelva el resultado de la operación seleccionada. Además
+// una vez que termine de realizar la operación le pregunte si desea realizar otro cálculo.
+
+bool continuar = true;
+
+while (continuar)
+{
+    Console.WriteLine("\n=== CALCULADORA ===");
+    Console.WriteLine("1. Sumar");
+    Console.WriteLine("2. Restar");
+    Console.WriteLine("3. Multiplicar");
+    Console.WriteLine("4. Dividir");
+    Console.Write("Seleccione una opción (1-4): ");
+    string opcion = Console.ReadLine();
+
+    if (opcion != "1" && opcion != "2" && opcion != "3" && opcion != "4")
+    {
+        Console.WriteLine("Opción inválida.");
+    }
+    else
+    {
+        Console.Write("Ingrese el primer número: ");
+        bool esNum1 = double.TryParse(Console.ReadLine(), out double num1);
+
+        Console.Write("Ingrese el segundo número: ");
+        bool esNum2 = double.TryParse(Console.ReadLine(), out double num2);
+
+        if (!esNum1 || !esNum2)
+        {
+            Console.WriteLine("Error: Debe ingresar números válidos.");
+        }
+        else
+        {
+            switch (opcion)
+            {
+                case "1":
+                    Console.WriteLine($"Resultado: {num1 + num2}");
+                    break;
+                case "2":
+                    Console.WriteLine($"Resultado: {num1 - num2}");
+                    break;
+                case "3":
+                    Console.WriteLine($"Resultado: {num1 * num2}");
+                    break;
+                case "4":
+                    if (num2 != 0)
+                        Console.WriteLine($"Resultado: {(num1 / num2):F2}"); //F2 para mostrar solo 2 decimales
+                    else
+                        Console.WriteLine("Error: No se puede dividir por cero.");
+                    break;
+            }
+        }
+    }
+
+    Console.Write("¿Desea realizar otra operación? (s/n): ");
+    string respuesta = Console.ReadLine();
+    continuar = (respuesta.ToLower() == "s");
 }
