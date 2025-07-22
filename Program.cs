@@ -18,7 +18,7 @@ Console.WriteLine("valor de b: " + b);
 // la línea que dice <Nullable>enable</Nullable>. No olvide guardar el archivo.
 
 int numero=0;
-Console.WriteLine("Ingrese un numero que quiera invertir (entero positivo):");
+Console.Write("Ingrese un numero que quiera invertir (entero positivo): ");
 string entrada = Console.ReadLine();
 bool esNumero = int.TryParse(entrada, out numero);
 
@@ -38,7 +38,7 @@ if (esNumero)
         }
 
         Console.WriteLine("El numero invertido es: " + numeroInvertido);
-    } 
+    }
     else
     {
         Console.WriteLine("La entrada no es un número entero válido");
@@ -47,4 +47,68 @@ if (esNumero)
 else
 {
     Console.WriteLine("La entrada no es un número entero válido");
+}
+
+// Ejercicio 3. Ingrese al Branch CalculadoraV2 para implementar las mejoras en la
+// calculadora. Solicite al usuario un número y muestre por pantalla:
+// ● El valor absoluto de un número
+// ● El cuadrado
+// ● La raíz cuadrada
+// ● El seno
+// ● El Coseno
+// ● La parte entera de un tipo float.
+// Luego de esto, solicite dos números al usuario y determine:
+// ● El Máximo entre los dos números
+// ● El Mínimo entre los dos números
+// Para TODOS los casos, no olvide contemplar siempre el caso de que el usuario no ingrese un número válido.
+
+Console.WriteLine("\n--- CALCULADORA V2 ---");
+Console.Write("Ingrese un número: ");
+string entrada1 = Console.ReadLine();
+
+if (double.TryParse(entrada1, out double numero1))
+{
+    Console.WriteLine($"Valor absoluto: {Math.Abs(numero1)}");
+    Console.WriteLine($"Cuadrado: {Math.Pow(numero1, 2)}");
+
+    if (numero1 >= 0)
+        Console.WriteLine($"Raíz cuadrada: {Math.Sqrt(numero1):F2}");
+    else
+        Console.WriteLine("Raíz cuadrada: Error, no se puede calcular con un número negativo.");
+
+    Console.WriteLine($"Seno: {Math.Sin(numero1):F4}");
+    Console.WriteLine($"Coseno: {Math.Cos(numero1):F4}");
+    Console.WriteLine($"Parte entera: {Math.Truncate(numero1)}");
+}
+else
+{
+    Console.WriteLine("Error: No ingresó un número válido.");
+}
+
+// Observaciones:
+// Math es parte de la librería estándar para funciones matemáticas.
+// El :F2 y :F4 limita la cantidad de decimales mostrados.
+
+Console.WriteLine("\n--- COMPARACIÓN ENTRE DOS NÚMEROS ---");
+
+Console.Write("Ingrese el primer número: ");
+string input1 = Console.ReadLine();
+
+Console.Write("Ingrese el segundo número: ");
+string input2 = Console.ReadLine();
+
+bool esNumero1 = double.TryParse(input1, out double n1);
+bool esNumero2 = double.TryParse(input2, out double n2);
+
+if (esNumero1 && esNumero2)
+{
+    double max = Math.Max(n1, n2);
+    double min = Math.Min(n1, n2);
+
+    Console.WriteLine($"Máximo: {max}");
+    Console.WriteLine($"Mínimo: {min}");
+}
+else
+{
+    Console.WriteLine("Error: Uno o ambos valores ingresados no son válidos.");
 }
