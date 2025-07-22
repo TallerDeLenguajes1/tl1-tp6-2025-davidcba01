@@ -171,3 +171,131 @@ else
 {
     Console.WriteLine("Error: Uno o ambos valores ingresados no son válidos.");
 }
+
+/*Ejercicio 4.
+Dada una cadena (un string) de texto ingresada por el usuario, realice las siguientes tarea:*/
+
+// ● Obtener la longitud de la cadena y muestre por pantalla.
+Console.Write("\nIngrese una cadena de texto: ");
+string cadena1 = Console.ReadLine();
+Console.WriteLine($"La longitud de la cadena es: {cadena1.Length}");
+
+// ● A partir de una segunda cadena ingresada por el usuario, concatene ambas cadenas distintas.
+Console.Write("Ingrese una segunda cadena: ");
+string cadena2 = Console.ReadLine();
+string concatenada = string.Concat(cadena1, " ", cadena2);
+Console.WriteLine($"Cadenas concatenadas: {concatenada}");
+
+// ● Extraer una subcadena de la cadena ingresada.
+if (cadena1.Length >= 3)
+{
+    string subcadena = cadena1.Substring(0, 3); // primeros 3 caracteres
+    Console.WriteLine($"Subcadena (primeros 3 caracteres): {subcadena}");
+}
+else
+{
+    Console.WriteLine("La cadena es muy corta para extraer una subcadena de 3 caracteres.");
+}
+
+/* ● Utilizando la calculadora creada anteriormente realizar las operaciones de dos números y 
+mostrar por pantalla y mostrar en texto el resultado. Por ejemplo para la suma sería: “la suma 
+de “ num1 “ y de” num2 “ es igual a: ” resultado.
+Donde num1, num2 y resultados son los sumandos y el resultado de la operación respectivamente.
+Nota: Busque el comportamiento del Método ToString();*/
+
+Console.Write("\nIngrese el primer número: ");
+double.TryParse(Console.ReadLine(), out double a1);
+
+Console.Write("Ingrese el segundo número: ");
+double.TryParse(Console.ReadLine(), out double b1);
+
+double resultado = a1 + b1;
+
+string textoResultado = $"La suma de {a1.ToString()} y de {b1.ToString()} es igual a: {resultado.ToString()}";
+Console.WriteLine(textoResultado);
+
+// ● Recorrer la cadena de texto con un ciclo Foreach e ir mostrando elemento por elemento en pantalla
+
+Console.WriteLine("\nCaracteres individuales de la primera cadena:");
+foreach (char c in cadena1)
+{
+    Console.WriteLine(c);
+}
+
+// ● Buscar la ocurrencia de una palabra determinada en la cadena ingresada
+
+Console.Write("\nIngrese una palabra a buscar en la primera cadena: ");
+string palabra = Console.ReadLine();
+
+if (cadena1.Contains(palabra))
+    Console.WriteLine($"La palabra '{palabra}' aparece en la cadena.");
+else
+    Console.WriteLine($"La palabra '{palabra}' NO se encuentra.");
+
+// ● Convierta la cadena a mayúsculas y luego a minúsculas.
+
+Console.WriteLine($"Mayúsculas: {cadena1.ToUpper()}");
+Console.WriteLine($"Minúsculas: {cadena1.ToLower()}");
+
+// ● Ingrese una cadena separada por caracteres que usted determine y muestre por pantalla los 
+//resultados (Revisar el comportamiento de split())
+
+Console.Write("\nIngrese una cadena separada por comas: ");
+string separada = Console.ReadLine();
+
+string[] partes = separada.Split(',');
+
+Console.WriteLine("Partes separadas:");
+foreach (string parte in partes)
+{
+    Console.WriteLine(parte.Trim()); // elimina espacios
+}
+
+/*● Siguiendo con el ejemplo de la calculadora (ejercicio 2) ingrese una ecuación simple como cadena 
+de caracteres y que el sistema lo resuelva. Por ej. ingrese por pantalla “582+2” y que le devuelva 
+la suma de 582 con 2*/
+
+Console.Write("\nIngrese una ecuación simple (ej. 582+2): ");
+string ecuacion = Console.ReadLine();
+
+if (ecuacion.Contains("+"))
+{
+    var partes1 = ecuacion.Split('+');
+    if (double.TryParse(partes1[0], out double n11) && double.TryParse(partes1[1], out double n22))
+        Console.WriteLine($"Resultado: {n11 + n22}");
+    else
+        Console.WriteLine("Valores no válidos.");
+}
+else if (ecuacion.Contains("-"))
+{
+    var partes1 = ecuacion.Split('-');
+    if (double.TryParse(partes1[0], out double n11) && double.TryParse(partes1[1], out double n22))
+        Console.WriteLine($"Resultado: {n11 - n22}");
+    else
+        Console.WriteLine("Valores no válidos.");
+}
+else if (ecuacion.Contains("*"))
+{
+    var partes1 = ecuacion.Split('*');
+    if (double.TryParse(partes1[0], out double n11) && double.TryParse(partes1[1], out double n22))
+        Console.WriteLine($"Resultado: {n11 * n22}");
+    else
+        Console.WriteLine("Valores no válidos.");
+}
+else if (ecuacion.Contains("/"))
+{
+    var partes1 = ecuacion.Split('/');
+    if (double.TryParse(partes1[0], out double n11) && double.TryParse(partes1[1], out double n22))
+    {
+        if (n22 != 0)
+            Console.WriteLine($"Resultado: {n11 / n22}");
+        else
+            Console.WriteLine("No se puede dividir por cero.");
+    }
+    else
+        Console.WriteLine("Valores no válidos.");
+}
+else
+{
+    Console.WriteLine("Formato de ecuación no válido.");
+}
